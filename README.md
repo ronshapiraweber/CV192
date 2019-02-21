@@ -1,4 +1,5 @@
-# CV192 Practical Session
+# CV192 Practical Session (Python/Numpy)
+## Author: Ron Shapira Weber
 
 Table of Contents
 =================
@@ -36,35 +37,39 @@ Table of Contents
 Python is a high-level programming language. While this guide should cover most of the topics relevant to the course, feel free to visit the official [python documnetation](https://docs.python.org/3/tutorial/index.html).
 
 ## Getting Started 
-There are two different versions of Python being supported at the moment, 2.7 and 3.6.
-For compatibility reasons, in this course we shall use the following Python (and packages) versions:
+There are two different versions of Python being supported at the moment, 2.7 and 3.6. 
+In this course, however, we will use the following:
  - Python 3.6
  - Numpy > 1.11.*
  - Scipy > 0.18.*
  - Matplotlib > 1.5.*
  - OpenCV = 3.1.2 (with Python bindings).
  
- You can find instructions for **Python 3.6** installation via Anaconda and OpenCV [here.](https://www.cs.bgu.ac.il/~mcv172/wiki.files/python_pkgs_and_opencv_installation_on_Ubuntu.txt) Anaconda provides an easy way to manage environments, packages and scientific notebooks, and includes apps such as **Spyder** and **Jupyter Notebook**. 
+ You can find instructions for installing **Python 3.6** (and the related packages, including OpenCV) via Anaconda [here](https://www.cs.bgu.ac.il/~mcv172/wiki.files/python_pkgs_and_opencv_installation_on_Ubuntu.txt). 
+ Anaconda provides an easy way to manage environments, packages and scientific notebooks. It also includes **Spyder**, *IPython (both inside and outside Spyder) 
+ and **Jupyter Notebooks**. 
  
- If you chose to use Anaconda, you can read how to manage your packages version [here](https://conda.io/docs/user-guide/tasks/manage-pkgs.html) (Windows users should use Anaconda Prompt for package installation), otherwise you should probably use [pip](https://pip.pypa.io/en/stable/installing/).
+ If you go with Anaconda, you can read how to manage package versions [here](https://conda.io/docs/user-guide/tasks/manage-pkgs.html) (Windows users should use Anaconda Prompt for package installation), otherwise you should probably use [pip](https://pip.pypa.io/en/stable/installing/).
  
+ The recommended IDE in this class is **Spyder**, especially as a major part of the debugging in computer vision is done visually by inspecting figures/images, etc. 
+ That said, this is only a recommendation. 
 
 ## Basic data types
-**Numbers:**: includes Integers, floats, long and complex. 
+**Numbers:**: include integers, floats, long and complex. 
 Here are some basic arithmetics:
 
 ```python  
-x = 4           # 'int'is the defualt type. notice there's no need for ; at the end of a statement. 
+x = 4           # 'int'is the default type. Note there is no need for a semicolon at the end of a statement. 
 print(x)        # Prints "2". 
-print (type(x)) # Prints "<class 'int'>"
-print (x + 1)   # Addition; prints "5"
-print (x - 1 )  # Subtraction; prints "3"
-print (x * 2)   # Multiplication; prints "8"
-print (x ** 2)  # Exponentiation; prints "16"
-print (x // 2.5)  # (floored) quotient of x and y; prints "1.0"
-print (x % 2.5)   # module / remainder of x / y; prints "1.5"
-x += 1    # There's not x++ in Python, so this is the way to go. prints "5"
-x *= 2    # prints "8"
+print(type(x)) # Prints "<class 'int'>"
+print(x + 1)   # Addition; prints "5"
+print(x - 1 )  # Subtraction; prints "3"
+print(x * 2)   # Multiplication; prints "8"
+print(x ** 2)  # Exponentiation; prints "16"
+print(x // 2.5)  # (floored) quotient of x and y; prints "1.0"
+print(x % 2.5)   # module / remainder of x / y; prints "1.5"
+x += 1    # Increases x by 1; Unlike in C++, there is no x++ in Python.
+x *= 2    # Multiplies x by 2
 # working with floats is similar
 y = 1.5
 print(type(y))  # Prints "<class 'float'>"
@@ -72,57 +77,54 @@ print(type(y))  # Prints "<class 'float'>"
 # casting from one type to another:
 x = 2.5        # type(x) = 'float'
 int(x)         # casts x to an integer; prints "2"
-
-#Note that print x,y and print(x,y) is not equal in Python 2.7
-print (x,y)
-(1, 2)      #this is a tublpe
-
-print x,y
-1 2         #these are two integers
 ```
 
 **Booleans:** 
 ```python
 a = True
 b = False
-a and b        # False; equal to a & b
-a or b         # True; equal to a | b
+a and b        # False
+a or b         # True
 not a          # False
 a != b         # True
-print int(a)   # prints "1" 
+print(int(a))   # prints "1" 
 
 ```
 **Strings:**
 ```python
-hello = 'hello'    # String variables can use single quotes
+hello = 'hello'    # String variables can use either single quotes
 world = "world"    # or double quotes; 
 print(hello)       # Prints "hello"
-print hello        # Also prints "hello". Python 2.7 print function needs no parentheses
 print(len(hello))  # String length; prints "5"
 helloWorld = hello + ' ' + world  # String concatenation
 print(helloWorld)  # prints "hello world"
-print hello, 27    # print "hello 27"
+print(hello, 27)    # print "hello 27"
 helloWorld27 = '%s %s %d' % (hello, world, 27)  # sprintf style string formatting
 print(helloWorld27 )  # prints "hello world 27
+print('{0} and {1}. Maybe even {2}.'.format('This','that',42)) # Print "This and that. Maybe even 42."
+
 ```
 
 ## Ipython
-Ipyhton is an interactive command shell which allows interactive Python sessions, using browser-based notebook (e.g **Jupyter Notebook**) and the use of data visualization. If you're using Anaconda, you can find an Ipython shell in **Spyder** under the *Ipyhton console* tab.
+IPython is an interactive command shell which allows interactive Python sessions. 
+It also supports using browser-based notebook (e.g **Jupyter Notebook**) and as well the use of data visualization. 
+Note well: You don't have to use a Jupyter notebook to use IPython. For example, you can use it in your Linux shell.
+Also, if you are using Spyder, you can find an Ipython shell in **Spyder** under the *IPython console* tab.
 
-<img src = "https://pythonhosted.org/spyder/_images/ipythonconsole.png">
-
-It is similar to the console tab in Matlab. In **Spyder**, several Ipython tabs could be used at once.
-When you'll see the following In[1], Out[1] in this tutorial, it is the output of an Ipython session.
-```pyhton
-In[1]: Ipython = "Wow, so very interactive"
-In[2]: Ipython
+In some sense, IPython is similar to the console tab in Matlab . In **Spyder**, several Ipython tabs could be used at once, side by side.
+When you see the following In[...], Out[...] in this tutorial below, it is the output of an IPython session.
+Example:
+```python
+In[1]: my_string = "Wow, so very interactive"
+In[2]: my_string
 Out[2]: 'Wow, so very interactive'
 
 ```
 
 ## Data Structures
 ### Lists
-Lists are used to group together items/values and function similar to arrays. They are capable of storing different types of items and are resizeable. 
+Lists group together items/values and function in similar way to arrays. 
+Lists can store multiple types of items and are resizeable and mutable. 
 
 ```python
 squares = [1, 4, 9, 16, 25]
@@ -130,13 +132,14 @@ squares[0]     # Python is zero-based; returns "1"
 squares[-1]    # returns the last item in the list; "25"
 squares[-3:]   # slicing returns a new list; "[9, 16, 25]"
 
-mixed list = [4, 2.5, 'nine'] # different types of items could be stored in a list
+mixed_list = [4, 2.5, 'nine'] # different types of items can be stored in a single list
 
 squares + [36, 49, 64, 81, 100] # list concatenation; 
 # "[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]"
 squares[2] = 99 # lists are mutable; "[1, 4, 99, 16, 25]"
 
 # a common way to add items to a list is via the append() method:
+cubes = [1, 8, 27, 64, 125] # declare list
 cubes.append(216)  # add 216 as the last value
 cubes.append(7 ** 3)  # add 343 as the last value
 # cubes: [1, 8, 27, 64, 125, 216, 343]
@@ -144,11 +147,11 @@ cubes.append(7 ** 3)  # add 343 as the last value
 # slicing is an easy way to access and manipulate items in a list
 # it returns a new (shallow) copy of the list:
 squares[:]     #  "[1, 4, 9, 16, 25]"
-nums = range(5)  # built-in function creates a list of numbers;
+nums = list(range(0,10,2))   # built-in function creates a "range" type, then convert it to a list;
 # "[0,1,2,3,4]"
-nums_even = range(0,10,2) 
+nums_even = list(range(5)
 # "from 0 to 10 (exclusive) in steps of 2; "[0, 2, 4, 6, 8]"
-even_reverse = range (10,0,-2) 
+even_reverse = list(range(10,0,-2))
 # "from 10 to 0 (exclusive) in steps of -2; "[10, 8, 6, 4, 2]"
 nums[2:4]             # Get a slice from index 2 to 4 (exclusive);"[2, 3]
 nums[2:]              # Get a slice from index 2 to the end; prints "[2, 3, 4]"
@@ -157,17 +160,16 @@ nums[2:4] = [8, 9]    # Assign a new sublist to a slice
 
 # list could act as multi-dimensional arrays 
 A = [[1,2],[3,4]] # a 2x2 array
-A[0][1] #returns "1". but we'll stop here since numpy is the way to go
-
+A[0][1] #returns "1". However, if you want arrays/matrices/etc., NumPy (see below) is the way to go.
 ```
-**Loops**: iterating in python feels almost like pseudo code:
+**Loops**: iterating in python reads almost like pseudo code:
 ```python
 bag = ['notebook', 'keys', 'lipstick']
 for stuff in bag:
-   print (stuff) # Python uses indentation to identify blocks of code
+   print(stuff) # Python uses indentation to identify blocks of code
 #prints 'notebook', 'keys', 'lipstick' 
 
-#you can also add indicies via the enumerate method
+#you can also add indices via the enumerate method
 for idx, _ in enumerate(bag):
    print(idx)   
 # prints '0, 1, 2'
@@ -180,7 +182,7 @@ while (count < 9):
    print(count)
    count = count + 1
 ```
-**List Comprehensions**: Python supports list comperhensions, which allows for
+**List Comprehensions**: Python supports list comprehension, which allows for
 creating and manipulating lists in a single line of code:
 ```python
 S = [x**2 for x in range(10)]
@@ -190,10 +192,11 @@ M = [x for x in S if x % 2 == 0] #only even numbers in S
 ```
 
 ## Dictionaries
-A dictionary stores (key, value) pairs. Dictionaries are indexed by key and not by indicies, so it is best to think of a dictionary as an unordered set of *key: value* pairs.
+A dictionary stores (key, value) pairs. Dictionaries are indexed by key and not by indices, 
+so it is best to think of a dictionary as an unordered set of *key: value* pairs.
 ```python
 # This code is taken from an IPython session.
-# Note that writting a varible name will 'Out' it's value
+# Note that writing a variable name will 'Out' it's value
 In[1]: n_seasons = {'GoT': 7, 'Friends': 10}
 
 In[2]: n_seasons['GoT'] # getting the value stored under the key 'GoT'
@@ -229,12 +232,11 @@ for tv_show, seasons in n_seasons.items():
 # ('Simpsons', 'inf') <-- tuple
 # ('GoT', 8)
 
-
 S = {x:x**2 for x in range(4)} #note the curly brackets
 # {0: 0, 1: 1, 2: 4, 3: 9}
 ```
 ## Tuples
-A tuple is an (immutable) ordered list of values.
+A tuple is an immutable ordered list of values.
 You can find more information on tuples [here](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences).
 
 ```python
@@ -246,11 +248,6 @@ t[2] = 'cat' #Error! tuples are immutable
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'tuple' object does not support item assignment
-
-# When there're no brackets, Python wiil recognize the data as a tuple
-x, y = range(2) #0,1
-print (x,y)
-#(0,1)
 
 ```
 [This part is taken from the official Python documentation:](https://docs.python.org/3/tutorial/datastructures.html#tuples-and-sequences)
@@ -265,6 +262,17 @@ print(len(singleton))
 #1
 print(singleton)
 #('hello',)
+
+a = (3)  # this is an int
+b = (3,) # this is a tuple! 
+print(a)
+# 3
+print(type(a))
+# int
+print(b)
+# (3,)
+print(type(b))
+#tuple
 ```
 # Functions
 A function is created by the keyword 'def' and is followed by the function name and a list of parameters.
@@ -285,14 +293,13 @@ print(powers_of_three(numbers))
 More information could be found [here](https://docs.python.org/3/tutorial/controlflow.html#defining-functions).
 
 # Numpy
-NumPy is a core Python package which supports multi-dimensional arrays and matrices, along with mathematical functions to operate on these arrays. Different from Python lists, Numpy array must contains elements of the same type. 
-For more information, visit the [quick start tutorial](https://docs.scipy.org/doc/numpy-dev/user/quickstart.html). If you are a veteran MATLAB user, [Numpy for MATLAB user](http://mathesaurus.sourceforge.net/matlab-numpy.html) is also available and is highly recommended, even for non-matlab users.
+NumPy is a core Python package which supports multi-dimensional arrays and matrices, along with mathematical functions to operate on these arrays. 
+For more information, visit the [quick start tutorial](https://docs.scipy.org/doc/numpy/user/quickstart.html). If you are a veteran MATLAB user, [Numpy for MATLAB user](http://mathesaurus.sourceforge.net/matlab-numpy.html) is also available and is highly recommended, even for non-matlab users.
 
 Here we'll do a quick review of some of Numpy's essential functions, but feel free to download the tutorial notebooks provided [here](https://www.cs.bgu.ac.il/~mcv172/wiki.files/tutorial.tar) and play around with them, it's the best way to learn. You'll need Jupyter Notebook, you can use the [online version](https://try.jupyter.org/) or via Anaconda (please see [getting started](#getting-started)). 
-TODO: update link to tutorial files.
 
 ## Arrays
-An array is a table of elements (usually numbers), all of the same type, indexed by a tuple of positive integers. In NumPy dimensions are called axes. The number of axes is rank.
+An array is a table of elements (usually numbers), all of the same type, indexed by a tuple of positive integers. In NumPy dimensions are called axes.
 
 **Array creation:**
 ```python
@@ -349,7 +356,7 @@ a.shape #(2,3,2)
 
  ```
 ## Indexing
-Indexing in Numpy works similar to when working with 1-D arrays.
+Indexing with 1-D Numpy arrays works similar to working python lists.
 
 ```python
 a = np.arange(10)**3
@@ -364,27 +371,26 @@ a[ : :-1]          # reversed a
 #array([  729,   512,   343,   216,   125, -1000,    27, -1000,     1, -1000])
 
 a=np.linspace(0,1,11) # from 0 to 1, with 11 steps
-print a
+print(a)
 # [ 0.   0.1  0.2  0.3  0.4  0.5  0.6  0.7  0.8  0.9  1. ]
 idx = np.array([0,2,5,3])
-print idx
+print(idx)
 # [0 2 5 3]
-print a[idx]
+print(a[idx])
 # [ 0.   0.2  0.5  0.3]
 ```
 
 Multi-dimensional arrays can have one index per axis. These indices are given in a tuple separated by commas.
 
 ```python
-
 # The lines below are equivalent
-tmp = np.arange(12).reshape(2,3)
-print tmp[1][3]
-print (tmp[1])[3] 
-print tmp[1,3] 
-print tmp[1][-1] # negative indexing
-print tmp[1,-1] # negative indexing
-# prints 7
+tmp = np.arange(12).reshape(2,6)
+print(tmp[1][5])
+print(tmp[1][5])
+print(tmp[1,5])
+print(tmp[1][-1]) # negative indexing
+print(tmp[1,-1]) # negative indexing
+# prints(7)
 
 # Array from function
 def f(x,y):
@@ -415,21 +421,22 @@ for row in b:
 
 # flatteing an a multi-dimensional:
 a = np.array([[1, 2, 3], [4, 5, 6]])
-b  = np.ravel(x)
+b  = np.ravel(a)
 print(b)       #prints [1 2 3 4 5 6]
 print(b.shape) #prints '(9L,)'
 
 
 # np.squeeze removes single-dimensional entries from the shape of an array.
 c = np.array([[[0], [1], [2]]])
-print c.shape # (1L, 3L, 1L)
-print c
+print(c.shape) # (1L, 3L, 1L)
+print(c)
 #  [[[0]
 #    [1]
 #    [2]]]
-print np.squeeze(c).shape # (3L,)
-print np.squeeze(c)       
+print(np.squeeze(c).shape) # (3L,)
+print (np.squeeze(c))
 # [0 1 2]
+
 
 ```
 **Indexing with Arrays of Indices**: 
@@ -440,12 +447,12 @@ print(a[i])                       # i can be of different shape than a
 # array([ 1,  1,  9, 64, 25])
 
 # another possible syntex
-print(a[[0], a[3]) # [0,9]
+print(a[0], a[3]) # [0,9]
 
 j = np.array( [ [ 3, 4], [ 9, 7 ] ] )      # a bidimensional array of indices
-a[j]                                       # the same shape as j
-array([[ 9, 16],
-       [81, 49]])
+print(a[j])                                # the same shape as j
+#array([[ 9, 16],
+#      [81, 49]])
 ```
 
 
@@ -479,7 +486,7 @@ array([[0, 1, 2, 3],   # assignments doesn't changes the shape of a
        [4, 0, 0, 0],
        [0, 0, 0, 0]]) 
 ```
-For more on indexing with array of indicies, please visit [numpy's documentation](https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-with-arrays-of-indices).
+For more on indexing with array of indices, please visit [numpy's documentation](https://docs.scipy.org/doc/numpy-dev/user/quickstart.html#indexing-with-arrays-of-indices).
 
 **Linear Indexing**: Sometimes we may want to flatten multi-dimensional array but still use its original coordinates and vice versa.
 For this we can use the *unravel_index* and *ravel_multi_index* methods:
@@ -491,11 +498,11 @@ a_arr = np.arange(12).reshape(3,-1)
 
 a_flat = np.ravel(a_arr)
 #array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
-idx = np.argwhere(a_flat%3==0) # returns indicies for a condition
-print a_flat[idx].T # returns row vector
+idx = np.argwhere(a_flat%3==0) # returns indices for a condition
+print(a_flat[idx].T) # returns row vector
 # array([[0, 3, 6, 9]])
 
-# We want the indicies in the dim of a_arr
+# We want the indices in the dim of a_arr
 idx_arr = np.unravel_index(idx, a_arr.shape) 
 #(array([[0],
 #        [0],
@@ -504,26 +511,26 @@ idx_arr = np.unravel_index(idx, a_arr.shape)
 #        [3],
 #        [2],
 #        [1]], dtype=int64))
-print a_arr[idx_arr].T 
+print(a_arr[idx_arr].T)
 #[[0 3 6 9]]
 
 # The other way around...
 #np.ravel_multi_index Converts a tuple of index arrays into an array of flat indices
 idx_flat = np.ravel_multi_index(idx_arr, a_arr.shape)
-print idx_flat.T
+print(idx_flat.T)
 # array([[0, 3, 6, 9]], dtype=int64)
 
 ```
 ## Some Math
 ```python 
-d = np.arange(6).reshape(2,3)
+a = np.arange(6).reshape(2,3)
 #array([[0, 1, 2],
 #       [3, 4, 5]])
 
 # same goes for min(), argmin() and minimum() functions
-d.max(0) 	# maximum element along an axis
+a.max(0) 	# maximum element along an axis
 # array([3, 4, 5])
-d.max(1) 	
+a.max(1)
 # array([2, 5])
 a.argmax(0) # Returns the indices of the maximum values along an axis.
 # array([1, 1, 1])
@@ -532,10 +539,10 @@ a.argmax(1)
 a.argmax() # if no axis is given, the index is of the flattened array
 # 5
 
-# np.maximum is a bit different - 
+# np.maximum is a bit different -
 # It compares two arrays and returns a new array containing the element-wise maxima:
-np.maximum(d[0,:], d[1,:]) # maximum between first and second rows of 'a'
-array([3, 4, 5])
+np.maximum(a[0,:], a[1,:]) # maximum between first and second rows of 'a'
+#array([3, 4, 5])
 
 # Sum()
 np.sum(a)       # Compute sum of all elements;   '10'
@@ -551,13 +558,10 @@ np.e                  #2.718281828459045
 np.exp(1)             #2.718281828459045
 np.exp(np.arange(5))  # handle  arrays
 # array([1. ,   2.71828183,   7.3890561 ,  20.08553692,  54.59815003])
-np.log([1, np.e, np.e**2, 0])  #natural log in base e = lan
+np.log([1, np.e, np.e**2])  #natural log in base e = lan
 # array([  0.,   1.,   2., -Inf])
 np.log2(8)     #base 2 log
 # 3
-
-
-
 ```
 
 ## Linear Algebra
@@ -622,7 +626,7 @@ v = np.array([2,3])
 np.linalg.norm(v) # L2 norm of vector v; 
 # 3.605551275463989
 
-D,V = linalg.eig(a)        # eigenvalues and eigenvectors of a
+D,V = np.linalg.eig(a)        # eigenvalues and eigenvectors of a
 D,V = np.linalg.eig((a,b)) # eigenvalues and eigenvectors of a, b
 ```
 
@@ -638,27 +642,29 @@ vertical_stack = np.vstack([c,d])
 horizontal_stack = np.hstack([c,d])
 # array([[1., 1., 1., 2., 2., 2.]])
 
-tile(c, (2, 3))    #create 2 by 3 copies of a
+np.tile(c, (2, 3))    #create 2 by 3 copies of a
 #array([[1., 1., 1., 1., 1., 1., 1., 1., 1.],
 #       [1., 1., 1., 1., 1., 1., 1., 1., 1.]])
 ```
 
 ## Probability 
-Numpy (and SciPy) provides several useful functions for doing probablity statistics.
+Numpy (and SciPy) provides several useful functions for doing probablity and statistics.
  ```python
 random_arr = np.random.random((2,2)) #creates an array with random values
-random_normal = np.random.randn((2,2)) # a 2x2 sampled from N(0,1)
+random_normal = np.random.randn(2,2) # a 2x2 sampled from N(0,1)
+print(random_normal)
 #might output:
 #     [[-1.25527029,  1.12880546],
 #      [-0.78455754, -0.34960907]]
 
 sigma = 2.5
 mu = 3
-random_normal2 = sigma*n.random.randn((2,2))+mu #a 2x2 sampled from N(3,6.25)=(mu,sigma^2)
+random_normal2 = sigma*np.random.randn(2,2)+mu #a 2x2 sampled from N(3,6.25)=(mu,sigma^2)
+print(random_normal2)
 #      [[1.28169047, 1.64080373],
 #       [4.76906697, 3.05345461]]
 
-# Sample from an array with corresponding probabilites array
+# Sample from an array with a corresponding probabilities array
 # Generate a non-uniform random sample from np.arange(5) of size 3:
 np.random.choice(np.arange(5), 3, replace=False, p=[0.1, 0, 0.3, 0.6, 0])
 # might output array([2, 3, 0])
@@ -669,20 +675,19 @@ np.random.choice(5, 3, replace=False, p=[0.1, 0, 0.3, 0.6, 0])
 
 # # replacing the replace=True allows for sampling the same value
 np.random.choice(5, 3, replace=True, p=[0.1, 0, 0.3, 0.6, 0])
-# might output array([3, 3, 0]) 
+# might output array([3, 3, 0])
 
 
 # some statistics
- v = np.array([1,1,2,2,2,2,3,3,4]);
-np.random.permutation(v) #[4, 1, 2, 3, 2, 2, 1, 2, 3]
+a = np.array([1,1,2,2,2,2,3,3,4]);
+np.random.permutation(a) #[4, 1, 2, 3, 2, 2, 1, 2, 3]
 np.median(a)  # 2.5
 np.mean(a) # 2.5 #changed from np.average(), please use np.mean()
 np.std(a)     # 1.1180339887
 np.var(a)     # 1.25
 
-# You can also use the mor OOP approach
+# You can also use the more OOP approach
 a.mean() # etc...
-
 ```
 
 **Allclose:**
@@ -697,16 +702,16 @@ b = a + 0.001*np.random.randn(5) #1e-03
 c = a + 1e-05*np.random.randn(5)
 d = a + 1e-08*np.random.randn(5)
 
-print"#1 a, b are all close: ", np.allclose(a,b)
-print"#1 a, c are all close: ", np.allclose(a,c)
-print"#1 a, d are all close: ", np.allclose(a,d)
+print("#1 a, b are all close: ", np.allclose(a,b))
+print("#1 a, c are all close: ", np.allclose(a,c))
+print("#1 a, d are all close: ", np.allclose(a,d))
 
 # It is possible to change the tolerance values
 # default values (rtol=1e-05, atol=1e-08)
 
-print"#2 a, b are all close: ", np.allclose(a,b, rtol=0.01, atol=1e-04)
-print"#2 a, c are all close: ", np.allclose(a,c, rtol=0.01, atol=1e-04)
-print"#2 a, d are all close: ", np.allclose(a,d, rtol=0.01, atol=1e-04)
+print("#2 a, b are all close: ", np.allclose(a,b, rtol=0.01, atol=1e-04))
+print("#2 a, c are all close: ", np.allclose(a,c, rtol=0.01, atol=1e-04))
+print("#2 a, d are all close: ", np.allclose(a,d, rtol=0.01, atol=1e-04))
 
 # Output:
 #1 a, b are all close:  False
@@ -715,13 +720,13 @@ print"#2 a, d are all close: ", np.allclose(a,d, rtol=0.01, atol=1e-04)
 
 #2 a, b are all close:  False
 #2 a, c are all close:  True
-#2 a, d are all close:  True
+#2 a, d are all close:  True 
 ```
 
 ## Broadcasting
 From the official [documentation:](https://docs.scipy.org/doc/numpy-1.13.0/user/basics.broadcasting.html)
 
-*The term broadcasting describes how numpy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is “broadcast” across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python. It does this without making needless copies of data and usually leads to efficient algorithm implementations. There are, however, cases where broadcasting is a bad idea because it leads to inefficient use of memory that slows computation.*
+*The term broadcasting describes how numpy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is �broadcast� across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python. It does this without making needless copies of data and usually leads to efficient algorithm implementations. There are, however, cases where broadcasting is a bad idea because it leads to inefficient use of memory that slows computation.*
 
 ```python
 # The trivial case of broadcasting a scalar to an array:
@@ -815,19 +820,55 @@ c + b
 #       [ 31.,  32.,  33.]])
 
 ```
+**Row mean Subtraction with broadcasting:**
+```python
+# Another working exmaple of broadcasting:
+a = np.arange(12.0).reshape(3,-1) 
+print(a)
+print (a.mean(axis=0))
+print ('a.shape =',a.shape) # (3,4)
+print ('a.mean(axis=0).shape =',a.mean(axis=0).shape) # (4,)
+print(a - a.mean(axis=0))  # Still works.
+try: 
+    print ('a - a.mean(axis=1) will fail')
+    print(a - a.mean(axis=1)) # this fails though:
+                          # ValueError: operands could not be broadcast together with shapes (3,4) (3,) 
+except ValueError:
+    print ('but a.T - a.mean(axis=1) works')
+    print(a.T - a.mean(axis=1)) # This works.
+    
+# Will output:
+"""
+[[ 0.  1.  2.  3.]
+ [ 4.  5.  6.  7.]
+ [ 8.  9. 10. 11.]]
+[4. 5. 6. 7.]
+a.shape = (3, 4)
+a.mean(axis=0).shape = (4,)
+[[-4. -4. -4. -4.]
+ [ 0.  0.  0.  0.]
+ [ 4.  4.  4.  4.]]
+a - a.mean(axis=1) will fail
+but a.T - a.mean(axis=1) works
+[[-1.5 -1.5 -1.5]
+ [-0.5 -0.5 -0.5]
+ [ 0.5  0.5  0.5]
+ [ 1.5  1.5  1.5]]
+"""
+```
 
 ## mgrid
 mgrid is one of numpy's most useful functions. it retruns an instance of a mesh-grid which could be used for creating coordinate arrays over some function. Please also review the  **mgrid.ipynb** jupyter notebook which is provided in the [tutorial files](#getting-started), especially the **speed-up** when comparing to for-loops .
 
 ```python
 y, x = np.mgrid[-2:3:1, -2:3:1] # from -2 to 3 (exclusive) steps of 1 
-print y 
+print(y)
 #array([[-2, -2, -2, -2, -2],
 #       [-1, -1, -1, -1, -1],
 #       [ 0,  0,  0,  0,  0],
 #       [ 1,  1,  1,  1,  1],
 #       [ 2,  2,  2,  2,  2]])
-print x
+print(x)
 #array([[-2, -1,  0,  1,  2],
 #       [-2, -1,  0,  1,  2],
 #       [-2, -1,  0,  1,  2],
@@ -917,7 +958,7 @@ The plot:
 
 <img src = "/Images/simple_line.png" width=50% height=50% >
 
-please visit the [documentation](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html) for more info.
+Please visit the [documentation](https://matplotlib.org/api/_as_gen/matplotlib.pyplot.plot.html) for more info.
 
 **Plotting several plots:** 
 The general formatting of the 'plot' function is the following:
@@ -1104,7 +1145,7 @@ if no argument is passed, imshow defaults to no interpolation.
 ## plotting in Ipython
 Taken from the official [documentation](https://matplotlib.org/users/shell.html)
 
-when using Ipyhton, you'll need to use addtional function in order to plot. 
+when using IPython, you'll need to use addtional function in order to plot. 
 First, you'll need to enable *pylab* by simple entering 
 
       %pylab
@@ -1127,7 +1168,7 @@ another important command is
 
       %matplotlib inline 
       
-which allows for plotting inside the Ipython shell (spyde/jupyter notebook)
+which allows for plotting inside the Ipython shell (spyder/jupyter notebook)
 
 The interactive property of the pyplot interface controls whether a figure canvas is drawn on every pyplot command. If interactive is False, then the figure state is updated on every plot command, but will only be drawn on explicit calls to draw(). When interactive is True, then every pyplot command triggers a draw.
 
@@ -1139,7 +1180,7 @@ OpenCV (Open Source Computer Vision Library) is a library with Python, C++ and J
 
 ```python
 
-import cv2
+import cv2 # This is how you import OpenCV
 import numpy as np
 from matplotlib import pyplot as plt
 
