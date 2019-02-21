@@ -864,7 +864,7 @@ but a.T - a.mean(axis=1) works
 ```
 
 ## mgrid
-mgrid is one of numpy's most useful functions. it retruns an instance of a mesh-grid which could be used for creating coordinate arrays over some function. Please also review the  **mgrid.ipynb** jupyter notebook which is provided in the [tutorial files](#getting-started), especially the **speed-up** when comparing to for-loops .
+mgrid is one of numpy's most useful functions. it retruns an instance of a mesh-grid which could be used for creating coordinate arrays over some function. Please also review the  **mgrid.ipynb** jupyter notebook which is provided in the [tutorial files](Tutorials), especially the **speed-up** when comparing to for-loops .
 
 ```python
 y, x = np.mgrid[-2:3:1, -2:3:1] # from -2 to 3 (exclusive) steps of 1 
