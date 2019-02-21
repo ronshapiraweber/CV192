@@ -7,7 +7,7 @@ Table of Contents
  * [Python](#python)
     * [Getting started](#getting-started)
     * [Basic data types](#basic-data-types)
-    * [Ipython](#ipython)
+    * [IPython](#ipython)
     * [Data Structures](#data-structures)
       * [Lists](#lists)
       * [Dictionaries](#dictionaries)
@@ -18,7 +18,7 @@ Table of Contents
    * [Indexing](#indexing)
    * [Some Math](#some-math)
    * [Linear Algebra](#linear-algebra)
-   * [Probabilty](#probability)
+   * [Probability](#probability)
    * [Broadcasting](#broadcasting)
    * [mgrid](#mgrid)
    * [Note about integers and floats in arrays](#note-about-integers-and-floats-in-arrays) 
@@ -27,7 +27,7 @@ Table of Contents
   * [Plotting](#plotting)
   * [Subplots](#subplots)
   * [Images](#images)
-  * [Plotting in Ipython](#plotting-in-ipython)
+  * [Plotting in IPython](#plotting-in-ipython)
 * [OpenCV](#opencv)
    * [Loading, saving and displaying images](#loading-saving-and-displaying-images)
    * [Working with Matplotlib](#working-with-matplotlib)
@@ -59,13 +59,13 @@ In this course, however, we will use the following:
 Here are some basic arithmetics:
 
 ```python  
-x = 4           # 'int'is the default type. Note there is no need for a semicolon at the end of a statement. 
-print(x)        # Prints "2". 
-print(type(x)) # Prints "<class 'int'>"
-print(x + 1)   # Addition; prints "5"
-print(x - 1 )  # Subtraction; prints "3"
-print(x * 2)   # Multiplication; prints "8"
-print(x ** 2)  # Exponentiation; prints "16"
+x = 4            # 'int'is the default type. Note there is no need for a semicolon at the end of a statement. 
+print(x)         # Prints "2". 
+print(type(x))   # Prints "<class 'int'>"
+print(x + 1)     # Addition; prints "5"
+print(x - 1 )    # Subtraction; prints "3"
+print(x * 2)     # Multiplication; prints "8"
+print(x ** 2)    # Exponentiation; prints "16"
 print(x // 2.5)  # (floored) quotient of x and y; prints "1.0"
 print(x % 2.5)   # module / remainder of x / y; prints "1.5"
 x += 1    # Increases x by 1; Unlike in C++, there is no x++ in Python.
@@ -98,7 +98,7 @@ print(hello)       # Prints "hello"
 print(len(hello))  # String length; prints "5"
 helloWorld = hello + ' ' + world  # String concatenation
 print(helloWorld)  # prints "hello world"
-print(hello, 27)    # print "hello 27"
+print(hello, 27)    # prints "hello 27"
 helloWorld27 = '%s %s %d' % (hello, world, 27)  # sprintf style string formatting
 print(helloWorld27 )  # prints "hello world 27
 print('{0} and {1}. Maybe even {2}.'.format('This','that',42)) # Print "This and that. Maybe even 42."
@@ -147,9 +147,9 @@ cubes.append(7 ** 3)  # add 343 as the last value
 # slicing is an easy way to access and manipulate items in a list
 # it returns a new (shallow) copy of the list:
 squares[:]     #  "[1, 4, 9, 16, 25]"
-nums = list(range(0,10,2))   # built-in function creates a "range" type, then convert it to a list;
+nums = list(range(5) # built-in function creates a "range" type, then convert it to a list;
 # "[0,1,2,3,4]"
-nums_even = list(range(5)
+nums_even = list(range(0,10,2))
 # "from 0 to 10 (exclusive) in steps of 2; "[0, 2, 4, 6, 8]"
 even_reverse = list(range(10,0,-2))
 # "from 10 to 0 (exclusive) in steps of -2; "[10, 8, 6, 4, 2]"
@@ -403,6 +403,11 @@ print(b)
 #       [20, 21, 22, 23],
 #       [30, 31, 32, 33],
 #       [40, 41, 42, 43]])
+#
+# np.fromfunction:
+# Construct an array by executing a function over each coordinate.
+# The resulting array therefore has a value fn(x, y, z) at coordinate (x, y, z).
+
 b[2,3]         # '23'
 b[0:5, 1]      # each row in the second column of b
 #array([ 1, 11, 21, 31, 41])
@@ -471,7 +476,7 @@ a = np.arange(12).reshape(3,4)
 #       [ 4,  5,  6,  7],
 #       [ 8,  9, 10, 11]])
 b = a > 4
-b                      # b is a boolean with a's shape
+print(b)    # b is a boolean with a's shape
 # array([[False, False, False, False],
 #      [False,  True,  True,  True],
 #       [ True,  True,  True,  True]], dtype=bool)
@@ -507,7 +512,8 @@ idx_arr = np.unravel_index(idx, a_arr.shape)
 #(array([[0],
 #        [0],
 #        [1],
-#        [2]], dtype=int64), array([[0],
+#        [2]], dtype=int64), 
+# array([[0],
 #        [3],
 #        [2],
 #        [1]], dtype=int64))
@@ -559,13 +565,13 @@ np.exp(1)             #2.718281828459045
 np.exp(np.arange(5))  # handle  arrays
 # array([1. ,   2.71828183,   7.3890561 ,  20.08553692,  54.59815003])
 np.log([1, np.e, np.e**2])  #natural log in base e = lan
-# array([  0.,   1.,   2., -Inf])
+# array([  0.,   1.,   2.])
 np.log2(8)     #base 2 log
 # 3
 ```
 
 ## Linear Algebra
-Numpy has many bulit-in linear algebra operation which could be used on numpy arrays. Again, please visit [numpy for matlab users](https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html) for more on numpy's linear algebra operations.
+Numpy has many bulit-in linear algebra operation which could be used on numpy arrays. Again, please visit [numpy for matlab users](https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html) for more information on numpy's linear algebra operations.
 
 ```python
 a = np.arange(1,5, dtype=float).reshape(2,2) 
@@ -682,7 +688,7 @@ np.random.choice(5, 3, replace=True, p=[0.1, 0, 0.3, 0.6, 0])
 a = np.array([1,1,2,2,2,2,3,3,4]);
 np.random.permutation(a) #[4, 1, 2, 3, 2, 2, 1, 2, 3]
 np.median(a)  # 2.5
-np.mean(a) # 2.5 #changed from np.average(), please use np.mean()
+np.mean(a)    # 2.5 
 np.std(a)     # 1.1180339887
 np.var(a)     # 1.25
 
@@ -914,7 +920,7 @@ When T=1, this is fine, since we have 1/1, and this is just 1.
 When 1/1.5 this is still fine and you get what you expect, since 1.5 is a float so python converts int/float to float/float. 
 But with 1/2 you get zero and not what you expect. 
 Try 1.0 / 2 instead, or even 1/np.float(2). 
-The right way to go about it using
+For instance:
 ```python
 For T in [1.0,1.5,2.0]...
 # or
@@ -1142,7 +1148,7 @@ Also worth noting in this context is that in MATLAB the default is exactly the o
 if no argument is passed, imshow defaults to no interpolation.
 
 
-## plotting in Ipython
+## plotting in IPython
 Taken from the official [documentation](https://matplotlib.org/users/shell.html)
 
 when using IPython, you'll need to use addtional function in order to plot. 
