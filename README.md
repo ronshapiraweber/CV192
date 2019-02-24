@@ -810,20 +810,30 @@ B      (3d array):  8 x 4 x 3 # second from last dimensions mismatched
 **Outer product with broadcasting:**
 
 ```python
-a = np.array([0.0, 10.0, 20.0, 30.0])
-b = np.array([1.0, 2.0, 3.0])
-a[:, np.newaxis] + b       # np.newaxis adds a new axis (dim=1)
-#array([[  1.,   2.,   3.],
-#       [ 11.,  12.,  13.],
-#       [ 21.,  22.,  23.],
-#       [ 31.,  32.,  33.]])
-# equally, we can do:
-c = a.reshape(4,1)  # 1 is the trailing axis
-c + b
-#array([[  1.,   2.,   3.],
-#       [ 11.,  12.,  13.],
-#       [ 21.,  22.,  23.],
-#       [ 31.,  32.,  33.]])
+In [1]: a = np.array([0.0, 10.0, 20.0, 30.0]) 
+In [2]: b = np.array([1.0, 2.0, 3.0]) 
+In [3]: a + b 
+-------------------------------------------------------------------------
+ValueError Traceback (most recent call last) <ipython-input-24-3f2f7dbaa1c8> in <module>() ----> 1
+a +b ValueError: operands could not be broadcast together with shapes (4,) (3,) 
+
+In [4]: a = np.expand_dims(a,-1) # adds a new dimension at the end 
+In [5]: a.shape 
+Out[6]: (4, 1) 
+
+In [7]: a + b 
+Out[7]: 
+array([[ 1., 2., 3.],
+       [11., 12., 13.], 
+       [21., 22., 23.], 
+       [31., 32., 33.]]) 
+
+In [8]: a*b
+Out[8]: 
+array([[ 0., 0., 0.], 
+[10., 20., 30.], 
+[20., 40., 60.], 
+[30., 60., 90.]])
 
 ```
 **Row mean Subtraction with broadcasting:**
