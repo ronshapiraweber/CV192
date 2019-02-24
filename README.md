@@ -299,7 +299,7 @@ For more information, visit the [quick start tutorial](https://docs.scipy.org/do
 Here we'll do a quick review of some of Numpy's essential functions, but feel free to download the tutorial notebooks provided [here](https://www.cs.bgu.ac.il/~mcv172/wiki.files/tutorial.tar) and play around with them, it's the best way to learn. You'll need Jupyter Notebook, you can use the [online version](https://try.jupyter.org/) or via Anaconda (please see [getting started](#getting-started)). 
 
 ## Arrays
-An array is a table of elements (usually numbers), all of the same type, indexed by a tuple of positive integers. In NumPy dimensions are called axes.
+An array is a table of elements (usually numbers), indexed by a tuple of positive integers. In NumPy dimensions are called axes.
 
 **Array creation:**
 ```python
