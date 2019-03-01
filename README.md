@@ -45,11 +45,11 @@ In this course, however, we will use the following:
  - Matplotlib > 1.5.*
  - OpenCV = 3.1.2 (with Python bindings).
  
- You can find instructions for installing **Python 3.6** (and the related packages, including OpenCV) via Anaconda [here](https://www.cs.bgu.ac.il/~mcv172/wiki.files/python_pkgs_and_opencv_installation_on_Ubuntu.txt). 
+ You can find instructions for installing and setting up **Python 3.6** (and the related packages, including OpenCV) via Anaconda [here](https://www.cs.bgu.ac.il/~cv192/Software).
  Anaconda provides an easy way to manage environments, packages and scientific notebooks. It also includes **Spyder**, *IPython (both inside and outside Spyder) 
  and **Jupyter Notebooks**. 
  
- If you go with Anaconda, you can read how to manage package versions [here](https://conda.io/docs/user-guide/tasks/manage-pkgs.html) (Windows users should use Anaconda Prompt for package installation), otherwise you should probably use [pip](https://pip.pypa.io/en/stable/installing/).
+ If you go with Anaconda, you can read how to manage package versions [here](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html) (Windows users should use Anaconda Prompt for package installation), otherwise you should probably use [pip](https://pip.pypa.io/en/stable/installing/).
  
  The recommended IDE in this class is **Spyder**, especially as a major part of the debugging in computer vision is done visually by inspecting figures/images, etc. 
  That said, this is only a recommendation. 
