@@ -571,7 +571,7 @@ np.log2(8)     #base 2 log
 ```
 
 ## Linear Algebra
-Numpy has many bulit-in linear algebra operation which could be used on numpy arrays. Again, please visit [numpy for matlab users](https://docs.scipy.org/doc/numpy-dev/user/numpy-for-matlab-users.html) for more information on numpy's linear algebra operations.
+Numpy has many bulit-in linear algebra operation which could be used on numpy arrays.
 
 ```python
 a = np.arange(1,5, dtype=float).reshape(2,2) 
